@@ -14,11 +14,15 @@
 
 	</div>
 	<div class="textwrapper">
-		<h1>Spect2Bird: Bird sound recognition using spectrograms and pix2pix </h1>
-		<p id="author">Stacey Willcox</p><br><br>
+		<h1>Spect2Bird: Bird sound recognition using spectrograms and pix2pix <a href="files/creativeAI_paper.pdf">(PDF)</a></h1>
+		<p id="author">Stacey Willcox</p>
+		
+		<h2>Abstract</h2>
+		<p><i>This project acts as proof of concept for the use of spectrograms and pix2pix as a New Zealand bird identification and visualisation tool. Images of bird sound spectrograms were paired with images of birds and trained using pix2pix. Audio files were collected from eBird (https://ebird.org/media/catalog), edited to reduced noise, manually scrubbed for audio events and saved in sections as spectrogram images. Bird images were also collected from eBird and filtered to collect the top 20 images of each bird category, using the criteria of image clarity, exposure of bird, body position and side profile perspective. Tui, Fantail, Bellbird and Rosella were chosen as the final bird for the dataset due their availability of data and variety of visual features. Different combinations of spectrogram and image quantities were tested as well as different bird types, which told us that a high quantity of spectrograms with some variation, and a smaller quantity of bird images with uniformity gave the best results. There are limitations using New Zealand birds as a dataset, as range and availability of quality data can be difficult to find due to the bird populations and scarcity. Results showed that, through the pipeline that this paper outlines, pix2pix can successfully train a model to use spectrograms to identify and visualise birds when given a spectrogram of their vocalisations.</i></p>
+
 		<h2>Introduction</h2>
 		
-		<p>This project acts as proof of concept for the use of spectrograms and pix2pix as a New Zealand bird identification and visualisation tool. Manual bird identification is difficult due to the inaccessibility of birds. Often audio is the only factor to use as they can be difficult to see or single out in concentrated areas. The use of audio visualisations such as spectrograms has been used in the past for bird identification (Reyes & Camargo, 2015) but not as a means for visualising the corresponding bird. Spectrograms are an effective tool for audio event detection as they communicate each frequency’s energy over time through colour. This provides readable, distinguishable and accurate visual audio data making it an ideal unique representation of a bird for training a model. Through the pipeline that this paper outlines, a pix2pix model can be used to identify and visualise birds from a spectrogram of their vocalisations. </p>
+		<p>Manual bird identification is difficult due to the inaccessibility of birds. Often audio is the only factor to use as birds can be difficult to see or single out in concentrated areas. The use of audio visualisations such as spectrograms have been used in the past for bird identification (Reyes & Camargo, 2015) but not as a means for visualising the corresponding bird. Spectrograms are an effective tool for audio event detection as they communicate each frequency’s energy over time through colour. This provides readable, distinguishable and accurate visual audio data making it an ideal unique representation of a bird for training a model. This paper explains the process, experiments and findings of training a pix2pix (Isola, Zhu, Zhou, & Efros, 2016). model on spectrograms and bird images.  </p>
 
 		<h2>Method</h2>
 		<p>The bird types used in the tests (Tui, Fantail, Bellbird, Eastern Rosella and Saddleback) were chosen based on the availability of data as well as visual consideration such as variety of colour and shape. All birds used can be found in New Zealand bush with the exception of the Macaw which was used as a placeholder visual contrast to the Tui in initial testing.</p>
@@ -30,10 +34,8 @@
 		<h3 class="subheading">Bird Spectrograms</h3>
 		<p>Audio files were also collected from New Zealand Birds Online (http://nzbirdsonline.org.nz/) initially but the majority were sourced from eBird (https://ebird.org/media/catalog) using the same filters as the image search. Each audio file was opened in Adobe Audition in the spectrogram viewer and manually skimmed for notable audio events. To ensure the spectrogram scale was consistent across all data, files were first scaled to show 16 seconds on the screen and unwanted noise was then reduced from the file to increase clarity and definition. The file was scrubbed visually while listening to the audio to ensure the spectrograms being collected were from the correct bird. The spectrograms were then screenshotted in sections at a consistent size with the main audio event in the centre of the image. Most audio files produced more than one spectrogram screenshot. Both the spectrograms and the bird images were resized to 256x256 pixel squares to be consistent with the pix2pix criteria. Spectrograms are paired with a corresponding bird image in one image and trained by pix2pix (Figure 1). Test data, made from pairs with spectrograms the model has never seen before, is run through the model to generate synthesised bird images based on the spectrogram. These images can then be analysed to judge the accuracy of the identified bird.</p>
 		<br>
-		<img class="dataexamples" src="images/rosella480.png">
-		<img class="dataexamples" src="images/bellbird207.png">
-		<img class="dataexamples" src="images/fantail757.png">
-		<img class="dataexamples" src="images/tui642.png">
+		<img class="resultexamples" src="images/figure1.png">
+
 		<br>
 		<h2>Experiments</h2>
 		<p>The first experiment  consisted of only two bird types in order to test the plausibility of the concept.  It consisted of 338 pairs broken into 169 images of each Macaw and Tui paired with 17 spectrograms. Spectrograms were repeated until each bird image was paired with one. The test data results (Figure 2), showed clear colour differentiation between the red Macaw and black/blue of the Tui generated images (there were no other recognizable bird features), proving that the model is able to tell a Macaw spectrogram from a Tui spectrogram.
@@ -65,13 +67,15 @@
 		<h2>Discussion</h2>
 		<p>
 		The final model can complete successful bird identifications of a Tui, Fantail, Bellbird and Eastern Rosella when given a spectrogram of those birds sounds with very few mistakes and produce recognizable bird images. At a larger scale, this model would allow for nationwide bird identification as well bird appearance predictions of unknown bird sound inputs. There are limitations due to the availability of audio and visual data, especially for some native New Zealand Birds although this concept is not limited to birds. This project is a proof of concept for using pix2pix and spectrograms for species identification and visualisation. There is also the possibility of a reverse pipeline. Using the same process, spectrograms could be generated from bird images and converted back to an audio file, allowing for bird vocalisations to be experienced from only an image input.</p>
+
 		<img class ="resultexamples"src="images/figure6.png">
+
 		<h3>References</h3>
-		<p>Isola, P., Zhu, J.-Y., Zhou, T., & Efros, A. A. (2016). Image- to-Image Translation with Conditional Adversarial Networks. ArXiv. Retrieved from http://arxiv.org/abs/1611.07004
-			<br><br>
-		Reyes, A. K., & Camargo, J. E. (2015). Visualization of audio records for automatic bird species identification. 2015 20th Symposium on Signal Processing, Images and Computer Vision (STSIVA), 1–6. https://doi.org/10.1109/STSIVA.2015.7330415</p>
+		<p class="indent">Isola, P., Zhu, J.-Y., Zhou, T., & Efros, A. A. (2016). Image- to-Image Translation with Conditional Adversarial Networks. ArXiv. Retrieved from http://arxiv.org/abs/1611.07004</p>
+			
+		<p class="indent">Reyes, A. K., & Camargo, J. E. (2015). Visualization of audio records for automatic bird species identification. 2015 20th Symposium on Signal Processing, Images and Computer Vision (STSIVA), 1–6. https://doi.org/10.1109/STSIVA.2015.7330415</p>
 		<br><br>
-		<a href="Lit_review_outline.pdf">PDF version here</a>
+		
 	</div>
 
 	<div>
@@ -79,105 +83,108 @@
 
 	</div>
 
-
-	<div class="wrapper">
 	<div class="background">
-		<div class ="birdwrapper" id="bellbird">
-			<h3>Bellbird</h3>
+		<div class="wrapper">
+		
+			<h1>Interactive Results</h1>
+			<h3 id="description">Click on a spectrogram to hear the bird sound.<br> The models interpretation of that bird sound is displayed to the right of the spectrogram.</h3>
+			
+			<div class ="birdwrapper" id="bellbird">
+				<h3>Bellbird</h3>
 
-			<div class="g-50">
-				<img id = "bellbirdexample1" class = "spect" src="images/bellbirdexample1.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/bellbird1.png">
+				<div class="g-50">
+					<img id = "bellbirdexample1" class = "spect" src="images/bellbirdexample1.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/bellbird1.png">
+				</div>
+
+				<div class="g-50">
+					<img id = "bellbirdexample2" class = "spect" src="images/bellbirdexample2.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/bellbird2.png">
+				</div>
+
+				<div class="g-50">
+					<img id = "bellbirdexample3"  class = "spect" src="images/bellbirdexample3.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/bellbird3.png">
+				</div>
+
+				<div class="g-50">
+					<img id = "bellbirdexample4"  class = "spect" src="images/bellbirdexample4.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/bellbird4.png">
+				</div>
 			</div>
 
-			<div class="g-50">
-				<img id = "bellbirdexample2" class = "spect" src="images/bellbirdexample2.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/bellbird2.png">
+			<div class ="birdwrapper" id="rosella">
+				<h3>Eastern Rosella</h3>
+
+				<div class="g-50">
+					<img id = "rosellaexample1" class = "spect"  src="images/rosellaexample1.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/rosella1.png">
+				</div>
+
+				<div class="g-50">
+					<img id = "rosellaexample2"  class = "spect" src="images/rosellaexample2.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/rosella2.png">
+				</div>
+
+				<div class="g-50">
+					<img id = "rosellaexample3"  class = "spect" src="images/rosellaexample3.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/rosella3.png">
+				</div>
+
+				<div class="g-50">
+					<img id = "rosellaexample4"  class = "spect" src="images/rosellaexample4.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/rosella4.png">
+				</div>
 			</div>
 
-			<div class="g-50">
-				<img id = "bellbirdexample3"  class = "spect" src="images/bellbirdexample3.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/bellbird3.png">
+			<div class ="birdwrapper" id="fantail">
+				<h3>Fantail</h3>
+
+				<div class="g-50">
+					<img id = "fantailexample1"  class = "spect" src="images/fantailexample1.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/fantail1.png">
+				</div>
+
+				<div class="g-50">
+					<img id = "fantailexample2"  class = "spect" src="images/fantailexample2.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/fantail2.png">
+				</div>
+
+				<div class="g-50">
+					<img id = "fantailexample3"  class = "spect"  src="images/fantailexample3.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/fantail3.png">
+				</div>
+
+				<div class="g-50">
+					<img id = "fantailexample4"  class = "spect"  src="images/fantailexample4.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/fantail4.png">
+				</div>
+
 			</div>
+			<div class ="birdwrapper" id="tui">
+				<h3>Tui</h3>
 
-			<div class="g-50">
-				<img id = "bellbirdexample4"  class = "spect" src="images/bellbirdexample4.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/bellbird4.png">
+				<div class="g-50">
+					<img id = "tuiexample1"  class = "spect" src="images/tuiexample1.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/tui1.png">
+				</div>
+
+				<div class="g-50">
+					<img id = "tuiexample2"  class = "spect" src="images/tuiexample2.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/tui2.png">
+				</div>
+
+				<div class="g-50">
+					<img id = "tuiexample3" class = "spect" src="images/tuiexample3.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/tui3.png">
+				</div>
+
+				<div class="g-50">
+					<img id = "tuiexample4"  class = "spect" src="images/tuiexample4.png" onclick="PlaySound(this.id)">
+					<img class = "birdimg" src= "images/tui4.png">
+				</div>
 			</div>
-		</div>
-	</div>
-		<div class ="birdwrapper" id="rosella">
-			<h3>Eastern Rosella</h3>
-
-			<div class="g-50">
-				<img id = "rosellaexample1" class = "spect"  src="images/rosellaexample1.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/rosella1.png">
-			</div>
-
-			<div class="g-50">
-				<img id = "rosellaexample2"  class = "spect" src="images/rosellaexample2.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/rosella2.png">
-			</div>
-
-			<div class="g-50">
-				<img id = "rosellaexample3"  class = "spect" src="images/rosellaexample3.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/rosella3.png">
-			</div>
-
-			<div class="g-50">
-				<img id = "rosellaexample4"  class = "spect" src="images/rosellaexample4.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/rosella4.png">
-			</div>
-		</div>
-
-		<div class ="birdwrapper" id="fantail">
-			<h3>Fantail</h3>
-
-			<div class="g-50">
-				<img id = "fantailexample1"  class = "spect" src="images/fantailexample1.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/fantail1.png">
-			</div>
-
-			<div class="g-50">
-				<img id = "fantailexample2"  class = "spect" src="images/fantailexample2.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/fantail2.png">
-			</div>
-
-			<div class="g-50">
-				<img id = "fantailexample3"  class = "spect"  src="images/fantailexample3.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/fantail3.png">
-			</div>
-
-			<div class="g-50">
-				<img id = "fantailexample4"  class = "spect"  src="images/fantailexample4.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/fantail4.png">
-			</div>
-
-		</div>
-		<div class ="birdwrapper" id="tui">
-			<h3>Tui</h3>
-
-			<div class="g-50">
-				<img id = "tuiexample1"  class = "spect" src="images/tuiexample1.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/tui1.png">
-			</div>
-
-			<div class="g-50">
-				<img id = "tuiexample2"  class = "spect" src="images/tuiexample2.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/tui2.png">
-			</div>
-
-			<div class="g-50">
-				<img id = "tuiexample3" class = "spect" src="images/tuiexample3.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/tui3.png">
-			</div>
-
-			<div class="g-50">
-				<img id = "tuiexample4"  class = "spect" src="images/tuiexample4.png" onclick="PlaySound(this.id)">
-				<img class = "birdimg" src= "images/tui4.png">
-			</div>
-		</div>
-	<div>
+		<div>
 	</div>
 </body>
 </html>

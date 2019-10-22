@@ -11,6 +11,12 @@ p{
 	 line-height: 1.6;
 }
 
+a{
+	font-family: 'Raleway', sans-serif;
+	text-decoration: none;
+	font-size: 12px;
+}
+
 .wrapper{
 
 	width:90%;
@@ -20,8 +26,20 @@ p{
 }
 
 .background{
+/*height: 1000px;*/
+background-color:#F5F5F5;
+padding-top:30px;
+text-align: center;
+display: flex;
+flex-direction: column;
+min-height: 100vh;
 
+}
 
+.indent{
+
+	 padding-left: 50px ;
+	text-indent: -50px ;
 }
 
 #author{
@@ -51,6 +69,7 @@ height:50px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 50px;
+	margin-bottom:100px;
 	background-color: white;
 }
 
@@ -127,12 +146,33 @@ height: 450px;
 	font-size: 17px;
 }
 
+#description{
+	font-size: 12px;
+	text-align: center;
+}
 
 h1, h2, h3{
 font-family: 'Montserrat', sans-serif;
 }
 
 
+@media only screen and (max-width: 1053px) {
+  .birdwrapper {
+    margin-top:50px;
+	margin-bottom:50px;
+	width:50%;
+	float:left;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .birdwrapper {
+    margin-top:50px;
+	margin-bottom:50px;
+	width:100%;
+	float:left;
+  }
+}
 
 
 
